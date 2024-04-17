@@ -45,8 +45,8 @@ class Book:
         return avail
     
     def get_genre_name(self):
-        print(self.genre)
-        print(Book.GENRE_NAMES.get(self.genre))
+        # print(self.genre)
+        # print(Book.GENRE_NAMES.get(self.genre))
         return Book.GENRE_NAMES.get(self.genre)
         
     def borrow_it(self):
