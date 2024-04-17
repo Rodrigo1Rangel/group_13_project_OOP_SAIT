@@ -4,7 +4,7 @@
 # Author: 
 # Version/Date: Winter 2024
 #
-import book
+import commands.book as book
 
 def main():
     # Create a list containing 3 books (test the constructor)
