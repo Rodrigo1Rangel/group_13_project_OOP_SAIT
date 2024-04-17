@@ -13,6 +13,8 @@
 # The librarian staff has the option to search, borrow, return, add,
 # remove, and print books.
 
+import book
+
 def main():
     '''Entry point for system
     Sets up book list
@@ -60,11 +62,21 @@ def return_book():
         appropriate message if none found'''
     pass
 
-def add_book():
+def add_book(book_list):
     '''Receives book list
     Gets ISBN, title, author, and genre from user, validating genre name
     Creates new instance of book and appends it to the list'''
-    pass
+    new_isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    new_title = input("Enter title: ")
+    new_author = input("Enter author name: ")
+    new_genre = input("Enter genre: ")
+    while new_genre not in book.Book.GENRE_DICT.values():
+        print("Invalid genre. Choices are: Romance, Mystery, Science Fiction, Thriller, Young Adult, Children's Fiction, Self-help, Fantasy, Historical Fiction, Poetry")
+        new_genre = input("Enter genre: ")
+    genre_int_list = list(book.Book.GENRE_DICT.values())
+    genre_int = genre_int_list.index(new_genre)
+    book_list.append()
+
 
 def remove_book():
     '''Receives book list
