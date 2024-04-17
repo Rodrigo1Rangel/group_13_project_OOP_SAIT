@@ -21,7 +21,7 @@ class Book:
     def get_available(self):
         return self.__available
     def get_genre_name(self):
-        return Book.genre_dict.get(self.__genre, "N/A")
+        return Book.GENRE_DICT.get(self.__genre, "N/A")
     def get_availability(self):
         if self.__available == True:
             return "Available"
@@ -44,4 +44,4 @@ class Book:
     
     # String format
     def __str__(self):
-        return f'{self.__isbn:<15} {self.__title:<25} {self.__author:<25} {Book.genre_dict.get(self.__genre):<20} {self.get_availability():<12}'
+        return f'{self.__isbn:<15} {self.__title:<25} {self.__author:<25} {Book.GENRE_DICT.get(self.__genre):<20} {self.get_availability():<12}'
