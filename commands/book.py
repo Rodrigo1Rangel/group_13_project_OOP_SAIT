@@ -1,6 +1,6 @@
 class Book:
 
-    genre_names = {0: "Romance", 1: "Mystery", 2: "Science Fiction", 3: "Thriller", 4: "Young Adult", 5: "Children's Fiction", 6: "Self-help", 7: "Fantasy", 8: "Historical Fiction", 9: "poetry"}
+    GENRE_NAMES = {0: "Romance", 1: "Mystery", 2: "Science Fiction", 3: "Thriller", 4: "Young Adult", 5: "Children's Fiction", 6: "Self-help", 7: "Fantasy", 8: "Historical Fiction", 9: "poetry"}
 
     def __init__(self, isbn, title, author, genre, availability):
 
@@ -46,8 +46,8 @@ class Book:
     
     def get_genre_name(self):
         print(self.genre)
-        print(Book.genre_names.get(self.genre))
-        return Book.genre_names.get(self.genre)
+        print(Book.GENRE_NAMES.get(self.genre))
+        return Book.GENRE_NAMES.get(self.genre)
         
     def borrow_it(self):
         self.availability = False
