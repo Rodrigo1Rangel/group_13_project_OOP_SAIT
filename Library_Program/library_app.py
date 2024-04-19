@@ -106,10 +106,20 @@ def remove_book(book_list):
     else:
         print("No book found with that ISBN.")
 
-def print_books():
+def print_books(book_list):
     '''Receives book list
     Displays book info heading and displays each book object on seperate line'''
-    pass
+
+    '''Arguments:
+        book_list: A list of Book Class objects'''
+    
+    '''Returns:
+        Nothing'''
+    
+    print(f'{"ISBN":<15} {"Title":<25} {"Author":<25} {"Genre":<20} {"Availability":<12}')
+    print("*" * 96)
+    for book in book_list:
+        print(book)
 
 def save_books():
     '''Receives book list and a pathname to csv
