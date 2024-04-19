@@ -11,17 +11,18 @@ def add_book(book_list):
     '''Receives book list
     Gets ISBN, title, author, and genre from user, validating genre name
     Creates new instance of book and appends it to the list'''
-    # new_isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
-    # new_title = input("Enter title: ")
-    # new_author = input("Enter author name: ")
-    new_genre = input("Enter genre: ")
-    # if book.Book.get_genre_name
-    # print(book.Book.GENRE_DICT.keys())
-    if new_genre in book.Book.GENRE_DICT.values():
-        genre_int_list = list(book.Book.GENRE_DICT.values())
-        genre_int = genre_int_list.index(new_genre)
-        print(genre_int)
-"C:\Users\howie\Documents\GitHub\group_13_project_OOP_SAIT\commands"
+    new_book_isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    new_book_title = input("Enter title: ")
+    new_book_author = input("Enter author name: ")
+    new_book_genre = input("Enter genre: ")
+    while new_book_genre not in book.Book.GENRE_DICT.values():
+        print("Invalid genre. Choices are: Romance, Mystery, Science Fiction, Thriller, Young Adult, Children's Fiction, Self-help, Fantasy, Historical Fiction, Poetry")
+        new_book_genre = input("Enter genre: ")
+    genre_int_list = list(book.Book.GENRE_DICT.values())
+    new_book_genre_int = genre_int_list.index(new_book_genre)
+    new_book = book.Book(new_book_isbn, new_book_title, new_book_author, new_book_genre_int, True)
+    book_list.append(new_book)
+    print(f'"{new_book.get_title()}" with ISBN {new_book.get_isbn()} sucessfully added.')
 
 if __name__ == "__main__":
     main()
