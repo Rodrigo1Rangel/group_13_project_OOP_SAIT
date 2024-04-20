@@ -66,28 +66,60 @@ def add_book(book_list):
     '''Receives book list
     Gets ISBN, title, author, and genre from user, validating genre name
     Creates new instance of book and appends it to the list'''
-    new_isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
-    new_title = input("Enter title: ")
-    new_author = input("Enter author name: ")
-    new_genre = input("Enter genre: ")
-    while new_genre not in book.Book.GENRE_DICT.values():
+
+    '''Arguments:
+    book_list: A list of Book class objects'''
+
+    '''Returns:
+    Nothing'''
+
+    new_book_isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    new_book_title = input("Enter title: ")
+    new_book_author = input("Enter author name: ")
+    new_book_genre = input("Enter genre: ")
+    while new_book_genre not in book.Book.GENRE_DICT.values():
         print("Invalid genre. Choices are: Romance, Mystery, Science Fiction, Thriller, Young Adult, Children's Fiction, Self-help, Fantasy, Historical Fiction, Poetry")
-        new_genre = input("Enter genre: ")
+        new_book_genre = input("Enter genre: ")
     genre_int_list = list(book.Book.GENRE_DICT.values())
-    genre_int = genre_int_list.index(new_genre)
-    book_list.append()
+    new_book_genre_int = genre_int_list.index(new_book_genre)
+    new_book = book.Book(new_book_isbn, new_book_title, new_book_author, new_book_genre_int, True)
+    book_list.append(new_book)
+    print(f'"{new_book.get_title()}" with ISBN {new_book.get_isbn()} sucessfully added.')
 
-
-def remove_book():
+def remove_book(book_list):
     '''Receives book list
     Gets ISBN from user validating with find_book_by_isbn()
     If book is found, remove it from list. Else display appropriate message'''
-    pass
 
-def print_books():
+    '''Arguments:
+        book_list: A list of Book class objects'''
+
+    '''Returns:
+        Nothing'''
+    
+    print("\n" + "CATALOG_DELIMITER * 2" + ' Remove a book ' + "CATALOG_DELIMITER * 2")
+    isbn_to_remove = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    isbn_to_remove_index = find_book_by_isbn(book_list, isbn_to_remove)
+    if isbn_to_remove_index != -1:
+        book_for_remove = book_list.pop(isbn_to_remove_index)
+        print(f'"{book_for_remove.get_title()}" with ISBN {book_for_remove.get_isbn()} sucessfully removed.')
+    else:
+        print("No book found with that ISBN.")
+
+def print_books(book_list):
     '''Receives book list
     Displays book info heading and displays each book object on seperate line'''
-    pass
+
+    '''Arguments:
+        book_list: A list of Book Class objects'''
+    
+    '''Returns:
+        Nothing'''
+    
+    print(f'{"ISBN":<15} {"Title":<25} {"Author":<25} {"Genre":<20} {"Availability":<12}')
+    print("*" * 96)
+    for book in book_list:
+        print(book)
 
 def save_books():
     '''Receives book list and a pathname to csv
