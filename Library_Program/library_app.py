@@ -35,12 +35,31 @@ def print_menu():
     Gets selection from user until valid selection, which is returned'''
     pass
 
-def search_books():
-    '''Receives book list and search string
-    Checks for search string in isbn, title, author, and genre,
-        adding book to results if found
-    Returns search result list'''
-    pass
+def search_books(book_list, search_value):
+    '''Checks for the book objects that contain the user's request substring
+    within the isbn, title, author, and genre values of each book object.
+    The books that contain the substring within one or more of its attributs
+    are added to a list.
+
+    Arguments:
+    book_list: a list.
+    search_value: a str.
+
+    Returns:
+    search_result_list: a list.'''
+
+    search_result_list = []
+    for book_obj in book_list:
+        book_obj_items = []
+        book_obj_items.append(str(book_obj.get_isbn()).lower())
+        book_obj_items.append(str(book_obj.get_title()).lower())
+        book_obj_items.append(str(book_obj.get_author()).lower())
+        book_obj_items.append(str(book_obj.get_genre_name()).lower())
+
+        if '¬'.join(book_obj_items).find(str(search_value).lower()) != -1:
+            search_result_list.append(book_obj)
+    return search_result_list
+
 
 def borrow_book():
     '''Receives book list
