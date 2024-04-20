@@ -13,7 +13,13 @@
 # The librarian staff has the option to search, borrow, return, add,
 # remove, and print books.
 
+# Import Modules
 import book
+
+# Declare constants
+MENU_DELIMITER = "="
+CATALOG_DELIMITER = "-"
+
 
 def main():
     '''Entry point for system
@@ -61,12 +67,32 @@ def search_books(book_list, search_value):
     return search_result_list
 
 
-def borrow_book():
-    '''Receives book list
-    Gets ISBN from user and calls find_book_by_isbn()
-    Invokes borrow_it() if ISBN matches an available book
-        and an appropriate message if not available'''
-    pass
+def borrow_book(book_list):
+    '''Receives the list with the books registered in the library.
+    Prompts the user for the ISBN value. The function find_book_by_isbn()
+    is called to check for the book availability. If available, the
+    function borrow_it() is invoked. If not, just an informative message
+    is displayed to the user.
+
+    Arguments:
+    book_list: a list.
+
+    Returns:
+    isbn_reseach_result: a str.'''
+
+    print("\n" + CATALOG_DELIMITER * 2 + ' Borrow a book ' + CATALOG_DELIMITER * 2)
+    isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    isbn_book_research = find_book_by_isbn(book_list, isbn)
+    if isbn_book_research != -1:
+        if book_list[isbn_book_research].get_available() == False:
+            isbn_reseach_result = print(f"'{book_list[isbn_book_research].get_title()}' with ISBN {book_list[isbn_book_research].get_isbn()} is not currently available.")
+        if book_list[isbn_book_research].get_available() == True:
+            book_list[isbn_book_research].borrow_it()
+            isbn_reseach_result =  print(f"'{book_list[isbn_book_research].get_title()}' with ISBN {book_list[isbn_book_research].get_isbn()} successfully borrowed.")
+    else:
+        isbn_reseach_result = print("No book found with that ISBN.")
+    return isbn_reseach_result
+
 
 def find_book_by_isbn():
     '''Receives book list and ISBN
