@@ -94,11 +94,30 @@ def borrow_book(book_list):
     return isbn_reseach_result
 
 
-def find_book_by_isbn():
-    '''Receives book list and ISBN
-    Finds exact match of ISBN in book list or stops at end
-    Returns the index of the matching book or -1 if none found'''
-    pass
+def find_book_by_isbn(book_list, isbn):
+    '''Receives the list with the books registered in the library, and
+    the ISBN that the user is looking for. As iterating through the
+    book objects in the list, it checks for a match between the researched
+    ISBN value and each book's ISBN attribute. If found a match, the index
+    related to the that object position in the argument list is returned.
+
+    Arguments:
+    book_list: a list.
+    isbn: a str.
+
+    Returns:
+    find_result: an int.'''
+
+    indexing_counter = -1
+    for book_obj in book_list:
+        indexing_counter += 1
+        book_obj_isbn = book_obj.get_isbn()
+        if book_obj_isbn == isbn:
+            find_result = indexing_counter
+        else:
+            find_result = -1
+    return find_result
+
 
 def return_book(book_list):
     '''Receives the list with the books registered in the library.
