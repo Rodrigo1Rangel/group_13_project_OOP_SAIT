@@ -70,9 +70,9 @@ def search_books(book_list, search_value):
 def borrow_book(book_list):
     '''Receives the list with the books registered in the library.
     Prompts the user for the ISBN value. The function find_book_by_isbn()
-    is called to check for the book availability. If available, the
-    function borrow_it() is invoked. If not, just an informative message
-    is displayed to the user.
+    is called to check for the book existance in the registry system.
+    If available, the function borrow_it() is invoked. If not, just an
+    informative message is displayed to the user.
 
     Arguments:
     book_list: a list.
@@ -100,12 +100,31 @@ def find_book_by_isbn():
     Returns the index of the matching book or -1 if none found'''
     pass
 
-def return_book():
-    '''Receives book list
-    Gets ISBN from user and calls find_book_by_isbn() with input
-    If ISBN matches a borrowed book, calls return_it() or displays
-        appropriate message if none found'''
-    pass
+def return_book(book_list):
+    '''Receives the list with the books registered in the library.
+    Prompts the user for the ISBN value. The function find_book_by_isbn()
+    is called to check for the book existance. If unavailable, the
+    return_it() object method is invoked. If not, just an informative
+    message is displayed to the user.
+
+    Arguments:
+    book_list: a list.
+
+    Returns:
+    return_book_result: a str.'''
+
+    isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    search_result_index = find_book_by_isbn(book_list, isbn)
+    if search_result_index == -1:
+        return_book_result = print("No book found with that ISBN.")
+    else:
+        if book_list[search_result_index].get_available() == False:
+            book_list[search_result_index].return_it() # self.__available = True
+            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} sucessfully returned.')
+        else:
+            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} is not currently borrowed.')
+    return return_book_result
+
 
 def add_book(book_list):
     '''Receives book list
