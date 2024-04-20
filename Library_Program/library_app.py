@@ -13,7 +13,13 @@
 # The librarian staff has the option to search, borrow, return, add,
 # remove, and print books.
 
+# Import Modules
 import book
+
+# Declare constants
+MENU_DELIMITER = "="
+CATALOG_DELIMITER = "-"
+
 
 def main():
     '''Entry point for system
@@ -35,32 +41,109 @@ def print_menu():
     Gets selection from user until valid selection, which is returned'''
     pass
 
-def search_books():
-    '''Receives book list and search string
-    Checks for search string in isbn, title, author, and genre,
-        adding book to results if found
-    Returns search result list'''
-    pass
+def search_books(book_list, search_value):
+    '''Checks for the book objects that contain the user's request substring
+    within the isbn, title, author, and genre values of each book object.
+    The books that contain the substring within one or more of its attributs
+    are added to a list.
 
-def borrow_book():
-    '''Receives book list
-    Gets ISBN from user and calls find_book_by_isbn()
-    Invokes borrow_it() if ISBN matches an available book
-        and an appropriate message if not available'''
-    pass
+    Arguments:
+    book_list: a list.
+    search_value: a str.
 
-def find_book_by_isbn():
-    '''Receives book list and ISBN
-    Finds exact match of ISBN in book list or stops at end
-    Returns the index of the matching book or -1 if none found'''
-    pass
+    Returns:
+    search_result_list: a list.'''
 
-def return_book():
-    '''Receives book list
-    Gets ISBN from user and calls find_book_by_isbn() with input
-    If ISBN matches a borrowed book, calls return_it() or displays
-        appropriate message if none found'''
-    pass
+    search_result_list = []
+    for book_obj in book_list:
+        book_obj_items = []
+        book_obj_items.append(str(book_obj.get_isbn()).lower())
+        book_obj_items.append(str(book_obj.get_title()).lower())
+        book_obj_items.append(str(book_obj.get_author()).lower())
+        book_obj_items.append(str(book_obj.get_genre_name()).lower())
+
+        if '¬'.join(book_obj_items).find(str(search_value).lower()) != -1:
+            search_result_list.append(book_obj)
+    return search_result_list
+
+
+def borrow_book(book_list):
+    '''Receives the list with the books registered in the library.
+    Prompts the user for the ISBN value. The function find_book_by_isbn()
+    is called to check for the book existance in the registry system.
+    If available, the function borrow_it() is invoked. If not, just an
+    informative message is displayed to the user.
+
+    Arguments:
+    book_list: a list.
+
+    Returns:
+    isbn_reseach_result: a str.'''
+
+    print("\n" + CATALOG_DELIMITER * 2 + ' Borrow a book ' + CATALOG_DELIMITER * 2)
+    isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    isbn_book_research = find_book_by_isbn(book_list, isbn)
+    if isbn_book_research != -1:
+        if book_list[isbn_book_research].get_available() == False:
+            isbn_reseach_result = print(f"'{book_list[isbn_book_research].get_title()}' with ISBN {book_list[isbn_book_research].get_isbn()} is not currently available.")
+        if book_list[isbn_book_research].get_available() == True:
+            book_list[isbn_book_research].borrow_it()
+            isbn_reseach_result =  print(f"'{book_list[isbn_book_research].get_title()}' with ISBN {book_list[isbn_book_research].get_isbn()} successfully borrowed.")
+    else:
+        isbn_reseach_result = print("No book found with that ISBN.")
+    return isbn_reseach_result
+
+
+def find_book_by_isbn(book_list, isbn):
+    '''Receives the list with the books registered in the library, and
+    the ISBN that the user is looking for. As iterating through the
+    book objects in the list, it checks for a match between the researched
+    ISBN value and each book's ISBN attribute. If found a match, the index
+    related to the that object position in the argument list is returned.
+
+    Arguments:
+    book_list: a list.
+    isbn: a str.
+
+    Returns:
+    find_result: an int.'''
+
+    indexing_counter = -1
+    for book_obj in book_list:
+        indexing_counter += 1
+        book_obj_isbn = book_obj.get_isbn()
+        if book_obj_isbn == isbn:
+            find_result = indexing_counter
+        else:
+            find_result = -1
+    return find_result
+
+
+def return_book(book_list):
+    '''Receives the list with the books registered in the library.
+    Prompts the user for the ISBN value. The function find_book_by_isbn()
+    is called to check for the book existance. If unavailable, the
+    return_it() object method is invoked. If not, just an informative
+    message is displayed to the user.
+
+    Arguments:
+    book_list: a list.
+
+    Returns:
+    return_book_result: a str.'''
+
+    isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
+    search_result_index = find_book_by_isbn(book_list, isbn)
+    if search_result_index == -1:
+        return_book_result = print("No book found with that ISBN.")
+    else:
+        if book_list[search_result_index].get_available() == False:
+            book_list[search_result_index].return_it() # self.__available = True
+            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} sucessfully returned.')
+        else:
+            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} is not currently borrowed.')
+    return return_book_result
+
 
 def add_book(book_list):
     '''Receives book list
