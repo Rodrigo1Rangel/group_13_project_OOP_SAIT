@@ -30,20 +30,21 @@ def main():
     pass
 
 
-"""
-Description: load_books loads the contents of the books.csv file into an empty list that will contain a list of book
-             objects. It does this by opening the file line by line, splits each line into individual strings, sets the
-             genre string into an integer value and the availability string into a boolean value, then passes all strings
-             from the line into a new book object that gets appended into the list. It closes the file and returns the 
-             number of books loaded from the file.
 
-Arguments:
-    - takes list containing list of book objects
-    - takes file_path which contains the file location of books.csv
-Return Values: 
-    - returns number of books written into books.csv
-"""
 def load_books(list, file_path):
+    """
+    Description: load_books loads the contents of the books.csv file into an empty list that will contain a list of book
+                 objects. It does this by opening the file line by line, splits each line into individual strings, sets the
+                 genre string into an integer value and the availability string into a boolean value, then passes all strings
+                 from the line into a new book object that gets appended into the list. It closes the file and returns the 
+                 number of books loaded from the file.
+    
+    Arguments:
+        - takes list containing list of book objects
+        - takes file_path which contains the file location of books.csv
+    Return Values: 
+        - returns number of books written into books.csv
+    """
     number_of_books = 0
     file = open(file_path)
 
@@ -231,17 +232,18 @@ def print_books(book_list):
     for book in book_list:
         print(book)
 
-"""
-Description: save_books saves changes made to the book list back to the books.csv file. It does this by opening the file and
-             rewriting all lines in the file with a string containing book object information from list with each line containing
-             the information of one book. It then closes the file and returns the number of books written to the file.
-Arguments:
-    - takes list containing list of book objects
-    - takes file_path which contains the file location of books.csv
-Return Values: 
-    - returns number of books written into books.csv
-"""
+
 def save_books(list, file_path):
+    """
+    Description: save_books saves changes made to the book list back to the books.csv file. It does this by opening the file and
+                 rewriting all lines in the file with a string containing book object information from list with each line containing
+                 the information of one book. It then closes the file and returns the number of books written to the file.
+    Arguments:
+        - takes list containing list of book objects
+        - takes file_path which contains the file location of books.csv
+    Return Values: 
+        - returns number of books written into books.csv
+    """
     number_of_books = 0
     file = open(file_path, "w")
 
