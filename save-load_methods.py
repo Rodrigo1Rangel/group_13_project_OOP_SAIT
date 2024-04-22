@@ -63,29 +63,3 @@ def save_books(list, file_path):
     file.close()
     print("Book catalog has been loaded.")
     return number_of_books
-
-
-book_list = []
-
-load_books(book_list, file_path=r"C:\SAIT powerpoints & documents\Final Group Assignment\books.csv")
-
-#for entry in book_list:
-#   print(entry)
-
-
-
-book_list.append(Book("978-9999999999","example_book","example_author",0,True))
-
-save_books(book_list, file_path=r"C:\SAIT powerpoints & documents\Final Group Assignment\books.csv")
-
-file = open(r"C:\SAIT powerpoints & documents\Final Group Assignment\books.csv", "r")
-
-for line in file:
-    line = line.rstrip()
-    print(line)
-
-
-file.close()
-
-
-book_list.clear()
