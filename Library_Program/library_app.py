@@ -221,16 +221,16 @@ def find_book_by_isbn(book_list, isbn):
     isbn: a str.
 
     Returns:
-    indexing_counter: an int.'''
+    book_index: an int.'''
 
     indexing_counter = -1
     for book_obj in book_list:
         indexing_counter += 1
         book_obj_isbn = book_obj.get_isbn()
+        book_index = -1
         if book_obj_isbn == isbn:
-            return indexing_counter
-        else:
-            return -1
+            book_index = indexing_counter
+    return book_index
 
 
 def return_book(book_list):
@@ -249,14 +249,13 @@ def return_book(book_list):
     isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
     search_result_index = find_book_by_isbn(book_list, isbn)
     if search_result_index == -1:
-        return_book_result = print("No book found with that ISBN.")
+        return print("No book found with that ISBN.")
     else:
         if book_list[search_result_index].get_available() == False:
             book_list[search_result_index].return_it() # self.__available = True
-            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} sucessfully returned.')
+            return print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} sucessfully returned.')
         else:
-            return_book_result = print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} is not currently borrowed.')
-    return return_book_result
+            return print(f'"{book_list[search_result_index].get_title()}" with ISBN {book_list[search_result_index].get_isbn()} is not currently borrowed.')
 
 
 def add_book(book_list):
