@@ -214,23 +214,23 @@ def find_book_by_isbn(book_list, isbn):
     book objects in the list, it checks for a match between the researched
     ISBN value and each book's ISBN attribute. If found a match, the index
     related to the that object position in the argument list is returned.
+    Otherwise returns -1.
 
     Arguments:
     book_list: a list.
     isbn: a str.
 
     Returns:
-    find_result: an int.'''
+    indexing_counter: an int.'''
 
     indexing_counter = -1
     for book_obj in book_list:
         indexing_counter += 1
         book_obj_isbn = book_obj.get_isbn()
         if book_obj_isbn == isbn:
-            find_result = indexing_counter
+            return indexing_counter
         else:
-            find_result = -1
-    return find_result
+            return -1
 
 
 def return_book(book_list):
