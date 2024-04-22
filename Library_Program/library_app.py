@@ -112,7 +112,7 @@ def load_books(list, file_path):
         else:
             line_split[4] = False
 
-        list.append(Book(line_split[0], line_split[1], line_split[2], int(line_split[3]), line_split[4]))
+        list.append(book.Book(line_split[0], line_split[1], line_split[2], int(line_split[3]), line_split[4]))
 
         number_of_books += 1
     
