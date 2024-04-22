@@ -86,6 +86,7 @@ def main():
     print("\n" + CATALOG_DELIMITER * 2 + " Exit the system " + CATALOG_DELIMITER * 2)
     print("Book catalog has been saved.\nGood Bye!")
     
+
 def load_books(list, file_path):
     """
     Description: load_books loads the contents of the books.csv file into an empty list that will contain a list of book
@@ -118,6 +119,7 @@ def load_books(list, file_path):
     print("Book catalog has been loaded.")
     file.close()
     return number_of_books
+
 
 def print_menu():
     '''Displays the default menu on screen, and prompts the user for
@@ -249,7 +251,7 @@ def return_book(book_list):
     isbn = input("Enter the 13-digit ISBN (format 999-9999999999): ")
     search_result_index = find_book_by_isbn(book_list, isbn)
     if search_result_index == -1:
-        return print("No book found with that ISBN.")
+        return_book_result = print("No book found with that ISBN.")
     else:
         if book_list[search_result_index].get_available() == False:
             book_list[search_result_index].return_it() # self.__available = True
@@ -282,6 +284,7 @@ def add_book(book_list):
     book_list.append(new_book)
     print(f'"{new_book.get_title()}" with ISBN {new_book.get_isbn()} sucessfully added.')
 
+
 def remove_book(book_list):
     '''Receives book list
     Gets ISBN from user validating with find_book_by_isbn()
@@ -301,6 +304,7 @@ def remove_book(book_list):
         print(f'"{book_for_remove.get_title()}" with ISBN {book_for_remove.get_isbn()} sucessfully removed.')
     else:
         print("No book found with that ISBN.")
+
 
 def print_books(book_list):
     '''Receives book list
