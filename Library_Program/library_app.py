@@ -24,11 +24,13 @@ VALID_MENU_SELECTION = {'0', '1', '2', '3', '2130'}
 VALID_LIBRARIAN_MENU_SELECTION = {'0', '1', '2', '3', '4', '5', '6'}
 
 def main():
-    '''Entry point for system
-    Sets up book list
-    Gets pathname and calls load_books()
-    Presents menu with validation
-    Calls save_books() before ending the program'''
+    '''Entry point for the library system. It controls the program's operation flow.
+    Prompts the user for the book registry file location and runs its data into the
+    program. Then the menu is displayed, which calls certain functions according to
+    the respective menu selection. If the user enters the staff code (2130), then
+    the menu switches to its librarian version with more functionalities.
+    Once any user quits the system, the book registry file is updated with the 
+    modifications done during the program session.'''
 
     print("Starting the system ...")
     file_path = input("Enter book catalog filename: ")
