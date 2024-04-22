@@ -120,9 +120,40 @@ def load_books(list, file_path):
     return number_of_books
 
 def print_menu():
-    '''Receives and diplays menu heading and menu options
-    Gets selection from user until valid selection, which is returned'''
-    pass
+    '''Displays the default menu on screen, and prompts the user for
+    a valid menu selection. If not, just an informative message is 
+    displayed to the user.
+    
+    Returns:
+    menu_selection: a str.'''
+    
+    print("\nReader's Guild Library - Main Menu")
+    print(MENU_DELIMITER * 34)
+    print("1. Search for books\n2. Borrow a book\n3. Return a book\n0. Exit the system")
+    menu_selection = input("Enter your selection: ")
+    while menu_selection not in VALID_MENU_SELECTION:
+        print("Invalid option")
+        menu_selection = input("Enter your selection: ")
+    return menu_selection
+
+
+def print_librarian_menu():
+    '''Displays the librarian menu on screen, and prompts the user
+    for a valid menu selection. If not, just an informative message
+    is displayed to the user.
+    
+    Returns:
+    menu_selection: a str.'''
+    
+    print("\nReader's Guild Library - Librarian Menu")
+    print(MENU_DELIMITER * 39)
+    print("1. Search for books\n2. Borrow a book\n3. Return a book\n4. Add a book\n5. Remove a book\n6. Print catalog\n0. Exit the system")
+    menu_selection = input("Enter your selection: ")
+    while menu_selection not in VALID_LIBRARIAN_MENU_SELECTION:
+        print("Invalid option")
+        menu_selection = input("Enter your selection: ")
+    return menu_selection
+
 
 def search_books(book_list, search_value):
     '''Checks for the book objects that contain the user's request substring
