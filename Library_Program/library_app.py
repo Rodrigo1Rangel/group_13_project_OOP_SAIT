@@ -180,7 +180,7 @@ def remove_book(book_list):
     '''Returns:
         Nothing'''
     
-    print("\n" + "CATALOG_DELIMITER * 2" + ' Remove a book ' + "CATALOG_DELIMITER * 2")
+    print("\n" + CATALOG_DELIMITER * 2 + ' Remove a book ' + CATALOG_DELIMITER * 2)
     isbn_to_remove = input("Enter the 13-digit ISBN (format 999-9999999999): ")
     isbn_to_remove_index = find_book_by_isbn(book_list, isbn_to_remove)
     if isbn_to_remove_index != -1:
