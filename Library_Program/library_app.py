@@ -115,7 +115,7 @@ def load_books(list, file_path):
         list.append(book.Book(line_split[0], line_split[1], line_split[2], int(line_split[3]), line_split[4]))
 
         number_of_books += 1
-    
+    print("Book catalog has been loaded.")
     file.close()
     return number_of_books
 
@@ -345,7 +345,6 @@ def save_books(list, file_path):
         number_of_books += 1
     
     file.close()
-    print("Book catalog has been loaded.")
     return number_of_books
 
 
