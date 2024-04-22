@@ -14,12 +14,14 @@
 # remove, and print books.
 
 # Import Modules
+import os
 import book
 
 # Declare constants
 MENU_DELIMITER = "="
 CATALOG_DELIMITER = "-"
-
+VALID_MENU_SELECTION = {'0', '1', '2', '3', '2130'}
+VALID_LIBRARIAN_MENU_SELECTION = {'0', '1', '2', '3', '4', '5', '6'}
 
 def main():
     '''Entry point for system
@@ -27,10 +29,61 @@ def main():
     Gets pathname and calls load_books()
     Presents menu with validation
     Calls save_books() before ending the program'''
-    pass
 
-
-
+    print("Starting the system ...")
+    file_path = input("Enter book catalog filename: ")
+    while not os.path.exists(file_path):
+        file_path = input("File not found. Re-enter book catalog filename: ")
+    book_list = []
+    load_books(book_list, file_path)
+    menu_selection = print_menu()
+    while menu_selection != '0':
+        match menu_selection:
+            case '1':
+                print("\n-- Search for books --")
+                search_value = input("Enter search value: ")
+                books_found_list = search_books(book_list, search_value)
+                if len(books_found_list) == 0:
+                    print('No matching books found')
+                else:
+                    print_books(books_found_list)
+                menu_selection = print_menu()
+            case '2':
+                borrow_book(book_list)
+                menu_selection = print_menu()
+            case '3':
+                return_book(book_list)
+                menu_selection = print_menu()
+            case '2130':
+                menu_selection = print_librarian_menu()
+                while menu_selection != '0':
+                    match menu_selection:
+                        case '1':
+                            print("-- Search for books --")
+                            search_value = input("Enter search value: ")
+                            books_found_list = search_books(book_list, search_value)
+                            print_books(books_found_list)
+                            menu_selection = print_librarian_menu()
+                        case '2':
+                            borrow_book(book_list)
+                            menu_selection = print_librarian_menu()
+                        case '3':
+                            return_book(book_list)
+                            menu_selection = print_librarian_menu()
+                        case '4':
+                            add_book(book_list)
+                            menu_selection = print_librarian_menu()
+                        case '5':
+                            remove_book(book_list)
+                            menu_selection = print_librarian_menu()
+                        case '6':
+                            print("\n" + CATALOG_DELIMITER * 2 + ' Print book catalog ' + CATALOG_DELIMITER * 2)
+                            print_books(book_list)
+                            menu_selection = print_librarian_menu()
+    save_books(book_list, file_path)
+    print("\n" + CATALOG_DELIMITER * 2 + " Exit the system " + CATALOG_DELIMITER * 2)
+    print("Book catalog has been saved.\nGood Bye!")
+    
 def load_books(list, file_path):
     """
     Description: load_books loads the contents of the books.csv file into an empty list that will contain a list of book
