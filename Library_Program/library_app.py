@@ -317,3 +317,7 @@ def save_books(list, file_path):
     file.close()
     print("Book catalog has been loaded.")
     return number_of_books
+
+
+if __name__=="__main__":
+    main()
