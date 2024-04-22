@@ -200,7 +200,7 @@ def print_books(book_list):
         Nothing'''
     
     print(f'{"ISBN":<15} {"Title":<25} {"Author":<25} {"Genre":<20} {"Availability":<12}')
-    print("*" * 96)
+    print(CATALOG_DELIMITER * 96)
     for book in book_list:
         print(book)
 
