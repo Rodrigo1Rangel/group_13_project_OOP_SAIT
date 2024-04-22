@@ -2,6 +2,7 @@ PS C:\Users\rodri\OneDrive\Rodrigo\rodrigo_calgary\classes\object-Oriented-Progr
 Starting the system ...
 Enter book catalog filename: bookZZ.csv
 File not found. Re-enter book catalog filename: books.csv
+Book catalog has been loaded.
 
 Reader's Guild Library - Main Menu
 ==================================
@@ -167,7 +168,6 @@ Reader's Guild Library - Librarian Menu
 6. Print catalog
 0. Exit the system
 Enter your selection: 0
-Book catalog has been loaded.
 
 -- Exit the system --
 Book catalog has been saved.

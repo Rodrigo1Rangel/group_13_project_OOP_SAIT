@@ -1,6 +1,7 @@
 PS C:\Users\rodri\OneDrive\Rodrigo\rodrigo_calgary\classes\object-Oriented-Programming\group_assignments\4. project_22APR\github\group_13_project_OOP_SAIT-main\group_13_project_OOP_SAIT-main\Library_Program> & C:/Users/rodri/AppData/Local/Programs/Python/Python312/python.exe "c:/Users/rodri/OneDrive/Rodrigo/rodrigo_calgary/classes/object-Oriented-Programming/group_assignments/4. project_22APR/github/group_13_project_OOP_SAIT-main/group_13_project_OOP_SAIT-main/Library_Program/library_app.py"
 Starting the system ...
 Enter book catalog filename: books.csv
+Book catalog has been loaded.
 
 Reader's Guild Library - Main Menu
 ==================================
@@ -136,7 +137,6 @@ Invalid option
 Enter your selection: x
 Invalid option
 Enter your selection: 0
-Book catalog has been loaded.
 
 -- Exit the system --
 Book catalog has been saved.
